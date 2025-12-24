@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otomanus - Agente de IA</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="16" cy="16" r="6" fill="currentColor"/>
+                    </svg>
+                    <span>Otomanus</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="chat">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>Chat</span>
+                </button>
+                <button class="nav-item" data-view="files">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>Arquivos</span>
+                </button>
+                <button class="nav-item" data-view="tools">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>Ferramentas</span>
+                </button>
+                <button class="nav-item" data-view="mcp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    <span>MCP Servers</span>
+                </button>
+                <button class="nav-item" data-view="config">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    <span>Configurações</span>
+                </button>
+                <button class="nav-item" data-view="logs">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <span>Logs</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span id="connection-status">Conectado</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Chat View -->
+            <div id="chat-view" class="view active">
+                <div class="view-header">
+                    <h1>Chat com Otomanus</h1>
+                    <div class="header-actions">
+                        <button id="new-chat-btn" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Nova Conversa
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">
+                                <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="16" cy="16" r="6" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h2>Bem-vindo ao Otomanus</h2>
+                            <p>Sou um assistente de IA capaz de executar diversas tarefas. Como posso ajudá-lo hoje?</p>
+                            <div class="suggestions">
+                                <button class="suggestion-btn" data-prompt="Crie um script Python que analise dados de um arquivo CSV">
+                                    Analisar dados CSV
+                                </button>
+                                <button class="suggestion-btn" data-prompt="Pesquise na web sobre as últimas tendências em IA">
+                                    Pesquisar na web
+                                </button>
+                                <button class="suggestion-btn" data-prompt="Crie uma página HTML simples com um formulário de contato">
+                                    Criar página web
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="thinking-panel" id="thinking-panel">
+                        <div class="thinking-header">
+                            <span class="thinking-title">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Processo de Pensamento
+                            </span>
+                            <button class="thinking-toggle" id="thinking-toggle">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="thinking-content" id="thinking-content">
+                            <!-- Thinking steps will be added here -->
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <textarea id="chat-input" placeholder="Digite sua mensagem..." rows="1"></textarea>
+                            <button id="send-btn" class="send-btn" disabled>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"/>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-info">
+                            <span>Pressione Enter para enviar, Shift+Enter para nova linha</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files View -->
+            <div id="files-view" class="view">
+                <div class="view-header">
+                    <h1>Arquivos do Workspace</h1>
+                    <div class="header-actions">
+                        <button id="refresh-files-btn" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                            </svg>
+                            Atualizar
+                        </button>
+                    </div>
+                </div>
+                <div class="files-container">
+                    <div id="files-list" class="files-list">
+                        <!-- Files will be loaded here -->
+                    </div>
+                    <div id="file-preview" class="file-preview">
+                        <div class="file-preview-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                            <p>Selecione um arquivo para visualizar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools View -->
+            <div id="tools-view" class="view">
+                <div class="view-header">
+                    <h1>Ferramentas Disponíveis</h1>
+                </div>
+                <div class="tools-container">
+                    <div id="tools-list" class="tools-list">
+                        <!-- Tools will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- MCP View -->
+            <div id="mcp-view" class="view">
+                <div class="view-header">
+                    <h1>Servidores MCP</h1>
+                    <div class="header-actions">
+                        <button id="add-mcp-btn" class="btn btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Adicionar Servidor
+                        </button>
+                    </div>
+                </div>
+                <div class="mcp-container">
+                    <div id="mcp-servers-list" class="mcp-servers-list">
+                        <!-- MCP servers will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Add MCP Server Modal -->
+                <div id="mcp-modal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Adicionar Servidor MCP</h2>
+                            <button class="modal-close" id="mcp-modal-close">&times;</button>
+                        </div>
+                        <form id="mcp-form">
+                            <div class="form-group">
+                                <label for="mcp-server-id">ID do Servidor</label>
+                                <input type="text" id="mcp-server-id" required placeholder="ex: my-server">
+                            </div>
+                            <div class="form-group">
+                                <label for="mcp-type">Tipo de Conexão</label>
+                                <select id="mcp-type" required>
+                                    <option value="sse">SSE (Server-Sent Events)</option>
+                                    <option value="stdio">STDIO</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="mcp-url-group">
+                                <label for="mcp-url">URL do Servidor</label>
+                                <input type="url" id="mcp-url" placeholder="http://localhost:8000/sse">
+                            </div>
+                            <div class="form-group hidden" id="mcp-command-group">
+                                <label for="mcp-command">Comando</label>
+                                <input type="text" id="mcp-command" placeholder="npx">
+                            </div>
+                            <div class="form-group hidden" id="mcp-args-group">
+                                <label for="mcp-args">Argumentos (separados por vírgula)</label>
+                                <input type="text" id="mcp-args" placeholder="@modelcontextprotocol/server-filesystem, /path">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="mcp-cancel">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Config View -->
+            <div id="config-view" class="view">
+                <div class="view-header">
+                    <h1>Configurações</h1>
+                </div>
+                <div class="config-container">
+                    <div class="config-section">
+                        <h2>Modelo LLM</h2>
+                        <div class="config-form">
+                            <div class="form-group">
+                                <label for="llm-model">Modelo</label>
+                                <select id="llm-model">
+                                    <option value="gpt-4o">GPT-4o (OpenAI)</option>
+                                    <option value="gpt-4o-mini">GPT-4o Mini (OpenAI)</option>
+                                    <option value="claude-3-opus-20240229">Claude 3 Opus (Anthropic)</option>
+                                    <option value="claude-3-sonnet-20240229">Claude 3 Sonnet (Anthropic)</option>
+                                    <option value="llama3.2">Llama 3.2 (Ollama)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="llm-base-url">Base URL</label>
+                                <input type="url" id="llm-base-url" placeholder="https://api.openai.com/v1">
+                            </div>
+                            <div class="form-group">
+                                <label for="llm-api-key">API Key</label>
+                                <input type="password" id="llm-api-key" placeholder="sk-...">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="llm-max-tokens">Max Tokens</label>
+                                    <input type="number" id="llm-max-tokens" value="4096" min="1" max="128000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="llm-temperature">Temperatura</label>
+                                    <input type="number" id="llm-temperature" value="0.0" min="0" max="2" step="0.1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <h2>Navegador</h2>
+                        <div class="config-form">
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="browser-headless">
+                                    Modo Headless
+                                </label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="browser-disable-security" checked>
+                                    Desabilitar Segurança
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <h2>Busca</h2>
+                        <div class="config-form">
+                            <div class="form-group">
+                                <label for="search-engine">Motor de Busca Padrão</label>
+                                <select id="search-engine">
+                                    <option value="Google">Google</option>
+                                    <option value="DuckDuckGo">DuckDuckGo</option>
+                                    <option value="Bing">Bing</option>
+                                    <option value="Baidu">Baidu</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="config-actions">
+                        <button id="save-config-btn" class="btn btn-primary">Salvar Configurações</button>
+                        <button id="reset-config-btn" class="btn btn-secondary">Restaurar Padrões</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs View -->
+            <div id="logs-view" class="view">
+                <div class="view-header">
+                    <h1>Logs do Sistema</h1>
+                    <div class="header-actions">
+                        <button id="refresh-logs-btn" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                            </svg>
+                            Atualizar
+                        </button>
+                    </div>
+                </div>
+                <div class="logs-container">
+                    <div id="logs-list" class="logs-list">
+                        <!-- Logs will be loaded here -->
+                    </div>
+                    <div id="log-content" class="log-content">
+                        <pre id="log-text">Selecione um arquivo de log para visualizar</pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
