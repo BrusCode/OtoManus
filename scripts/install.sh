@@ -125,7 +125,16 @@ install_dependencies() {
     
     # Install Playwright browsers
     print_info "Installing Playwright browsers..."
-    playwright install chromium
+    
+    # Detect architecture for Playwright
+    ARCH=$(uname -m)
+    if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
+        print_info "Arquitetura ARM64 detectada. Instalando dependências do Playwright para ARM..."
+        playwright install --with-deps chromium
+    else
+        playwright install chromium
+    fi
+    
     print_success "Playwright browsers installed"
 }
 

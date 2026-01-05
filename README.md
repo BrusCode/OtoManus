@@ -115,6 +115,15 @@ chmod +x scripts/install.sh
 - **Docker e Docker Compose** (para instalação containerizada)
 - **Git**
 
+### Compatibilidade ARM64 (Raspberry Pi, AWS Graviton, etc.)
+
+O OtoManus é compatível com arquiteturas **AMD64** e **ARM64**.
+
+- **Docker:** O `Dockerfile` foi ajustado para garantir que o Playwright baixe a versão correta do Chromium para a arquitetura ARM64. O Docker Compose irá orquestrar as imagens multi-arquitetura do PostgreSQL e Redis.
+- **Instalação Local:** O script `scripts/install.sh` agora detecta automaticamente a arquitetura ARM64 e instala as dependências corretas do Playwright.
+
+Em resumo, a instalação deve funcionar sem problemas em dispositivos ARM64. Caso encontre alguma dificuldade, por favor, abra uma issue no GitHub.
+
 ### Método 1: Docker Compose (Recomendado para Produção)
 
 1. **Clone o repositório:**

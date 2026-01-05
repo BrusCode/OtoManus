@@ -1,5 +1,5 @@
-# Otomanus - Dockerfile
-# Multi-stage build for optimized image size
+# OtoManus - Dockerfile
+# Suporte Multi-arquitetura (AMD64/ARM64)
 
 # Stage 1: Builder
 FROM python:3.12-slim as builder
@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     git \
     vim \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Python packages from builder
@@ -54,7 +55,8 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
 # Install Playwright browsers
-RUN playwright install chromium
+# No ARM64, o Playwright baixa automaticamente os binários corretos
+RUN playwright install --with-deps chromium
 
 # Copy application code
 COPY . .
@@ -67,6 +69,8 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV WORKSPACE_ROOT=/app/workspace
 ENV PROJECT_ROOT=/app
+# Garante que o Playwright use o Chromium instalado
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 # Expose port
 EXPOSE 8000
